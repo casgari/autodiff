@@ -1,9 +1,8 @@
 # Automatic Differentiation Package
-### Team 31
 -------
 
-[![.github/workflows/test.yml](https://code.harvard.edu/CS107/team31/actions/workflows/test.yml/badge.svg)](https://code.harvard.edu/CS107/team31/actions/workflows/test.yml)
-[![.github/workflows/coverage.yml](https://code.harvard.edu/CS107/team31/actions/workflows/coverage.yml/badge.svg)](https://code.harvard.edu/CS107/team31/actions/workflows/coverage.yml)
+[![.github/workflows/test.yml](https://github.com/casgari/autodiff/blob/main/.github/workflows/test.yml/badge.svg)](https://github.com/casgari/autodiff/blob/main/.github/workflows/test.yml)
+[![.github/workflows/coverage.yml](https://github.com/casgari/autodiff/blob/main/.github/workflows/coverage.yml/badge.svg)](https://github.com/casgari/autodiff/blob/main/.github/workflows/coverage.yml)
 
 ### Contributors
 -------
@@ -11,7 +10,7 @@ Cyrus Asgari, Caleb Saul, Sal Blanco, James Bardin
 
 ### Documentation
 -------
-[https://code.harvard.edu/CS107/team31/blob/main/docs/documentation.ipynb](https://code.harvard.edu/CS107/team31/blob/main/docs/documentation.ipynb)
+[https://github.com/casgari/autodiff/blob/main/docs/documentation.ipynb](https://github.com/casgari/autodiff/blob/main/docs/documentation.ipynb)
 
 ### How to Install
 -------
