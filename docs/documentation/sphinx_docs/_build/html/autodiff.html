@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>autodiff package &mdash; AutomaticDifferentiation  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="src" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> AutomaticDifferentiation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">autodiff package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-autodiff.dualnumber">autodiff.dualnumber module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.dualnumber.DualNumber"><code class="docutils literal notranslate"><span class="pre">DualNumber</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-autodiff.func">autodiff.func module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.func.Func"><code class="docutils literal notranslate"><span class="pre">Func</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-autodiff.operators">autodiff.operators module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.arccos"><code class="docutils literal notranslate"><span class="pre">arccos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.arcsin"><code class="docutils literal notranslate"><span class="pre">arcsin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.arctan"><code class="docutils literal notranslate"><span class="pre">arctan()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.cos"><code class="docutils literal notranslate"><span class="pre">cos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.cosh"><code class="docutils literal notranslate"><span class="pre">cosh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.exp"><code class="docutils literal notranslate"><span class="pre">exp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.log"><code class="docutils literal notranslate"><span class="pre">log()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.log_base"><code class="docutils literal notranslate"><span class="pre">log_base()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.logistic"><code class="docutils literal notranslate"><span class="pre">logistic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.sin"><code class="docutils literal notranslate"><span class="pre">sin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.sinh"><code class="docutils literal notranslate"><span class="pre">sinh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.sqrt"><code class="docutils literal notranslate"><span class="pre">sqrt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.tan"><code class="docutils literal notranslate"><span class="pre">tan()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.operators.tanh"><code class="docutils literal notranslate"><span class="pre">tanh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-autodiff.rNode">autodiff.rNode module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.rNode.rNode"><code class="docutils literal notranslate"><span class="pre">rNode</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-autodiff">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.DualNumber"><code class="docutils literal notranslate"><span class="pre">DualNumber</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.cos"><code class="docutils literal notranslate"><span class="pre">cos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.exp"><code class="docutils literal notranslate"><span class="pre">exp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.log"><code class="docutils literal notranslate"><span class="pre">log()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.sin"><code class="docutils literal notranslate"><span class="pre">sin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autodiff.tan"><code class="docutils literal notranslate"><span class="pre">tan()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AutomaticDifferentiation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+      <li class="breadcrumb-item active">autodiff package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/autodiff.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="autodiff-package">
+<h1>autodiff package<a class="headerlink" href="#autodiff-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-autodiff.dualnumber">
+<span id="autodiff-dualnumber-module"></span><h2>autodiff.dualnumber module<a class="headerlink" href="#module-autodiff.dualnumber" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="autodiff.dualnumber.DualNumber">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autodiff.dualnumber.</span></span><span class="sig-name descname"><span class="pre">DualNumber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">real</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dual</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.dualnumber.DualNumber" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>DualNumber class with overloaded operators for forward mode AD.</p>
+</dd></dl>
+
+</section>
+<section id="module-autodiff.func">
+<span id="autodiff-func-module"></span><h2>autodiff.func module<a class="headerlink" href="#module-autodiff.func" title="Permalink to this heading"></a></h2>
+<p>Function Module with Func class definition</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="autodiff.func.Func">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autodiff.func.</span></span><span class="sig-name descname"><span class="pre">Func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_outputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.func.Func" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Func class to be used for forward mode AD evaluation of derivatives.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="autodiff.func.Func.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_vector</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.func.Func.eval" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluate the function value and derivative in a given direction at a given point.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>point<span class="classifier">int, float, list, np.ndarray</span></dt><dd><p>The input point at wish users wish to evaluate the function and the function’s derivative. Can be int/float if &amp; only if input dimension = 1.</p>
+</dd>
+<dt>seed_vector<span class="classifier">list, np.ndarray</span></dt><dd><p>The direction in wish users wish to evaluate the function’s derivative</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>tuple</dt><dd><p>The first element is an np.ndarray with num_outputs length representing the function’s value
+evaluated at the given point.  The second element is an np.ndarray with num_outputs length
+representing the value of the derivative at the given point in the given direction.</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fofx</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Func</span><span class="p">(</span><span class="n">fofx</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">direction</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">direction</span><span class="p">)</span>
+<span class="go">(array([36.]), array([16.]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fofx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="go">        return y + x**2, x - 3*y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Func</span><span class="p">(</span><span class="n">fofx</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">direction</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">direction</span><span class="p">)</span>
+<span class="go">(array([18., -2.]), array([8., 1.]))</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autodiff.func.Func.graph">
+<span class="sig-name descname"><span class="pre">graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LR'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.func.Func.graph" title="Permalink to this definition"></a></dt>
+<dd><p>Display the computational graph of the function</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>point<span class="classifier">int,float,list, np.ndarray</span></dt><dd><p>The input point at wish users wish to calculate the function’s computational graph.</p>
+</dd>
+<dt>graph_direction<span class="classifier">str</span></dt><dd><p>A string indicating if users would like the computational graph display ‘LR’, left-to-right,
+or ‘TB’ top-to-bottom. Defaults to ‘LR’, left-to-right</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>graphviz.graphs.Digraph</dt><dd><p>A graphviz.graphs.Digraph object that displays the computational graph of the function</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Examples<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fofx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">):</span>
+<span class="go">    return  w + x**(2-y+w) + 2*y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Func</span><span class="p">(</span><span class="n">fofx</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mf">2.09</span><span class="p">,</span><span class="mf">4.8</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">graph</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="go">{computational graph displayed from left to right}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">graph</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="s1">&#39;TB&#39;</span><span class="p">)</span>
+<span class="go">{computational graph displayed from top to bottom}</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autodiff.func.Func.jacobian">
+<span class="sig-name descname"><span class="pre">jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.func.Func.jacobian" title="Permalink to this definition"></a></dt>
+<dd><p>The jacobian matrix of a function at a given point.</p>
+<section id="id4">
+<h3>Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>point<span class="classifier">int,float,list, np.ndarray</span></dt><dd><p>The input point at wish users wish to evaluate the function’s jacobian matrix. Can be int/float if &amp; only if input dimension = 1.</p>
+</dd>
+<dt>reverse<span class="classifier">bool</span></dt><dd><p>Set to true if users wish to evaluate the function’s jacobian using reverse mode automatic.  Default is False.</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h3>Returns<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>When the jacobian is a scalar:</dt><dd><dl class="simple">
+<dt>int, float</dt><dd><p>The scalar value representing the jacobian of the function at the inputted point</p>
+</dd>
+</dl>
+</dd>
+<dt>Otherwise:</dt><dd><dl class="simple">
+<dt>np.ndarray</dt><dd><p>The num_outputs by num_inputs jacobian matrix for the function at the inputted point</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Examples<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fofx</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Func</span><span class="p">(</span><span class="n">fofx</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="go">48.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fofx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+<span class="go">        return y * x**2, (x-y)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Func</span><span class="p">(</span><span class="n">fofx</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="go">array([[12.,  4.],</span>
+<span class="go">      [ 1., -1.]])</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-autodiff.operators">
+<span id="autodiff-operators-module"></span><h2>autodiff.operators module<a class="headerlink" href="#module-autodiff.operators" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.arccos">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">arccos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.arccos" title="Permalink to this definition"></a></dt>
+<dd><p>Arccos operation for dual numbers and ints or floats</p>
+<section id="id7">
+<h3>Parameters<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float used for the arccos operation</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h3>Returns<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the arccos operation performed. Integer and
+floats are supported, along with the arccos of dual numbers.</p>
+</dd>
+</dl>
+</section>
+<section id="raises">
+<h3>Raises<a class="headerlink" href="#raises" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type
+ValueError : raise ValueError if argument is not between -1 and 1 inclusive</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.arcsin">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">arcsin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.arcsin" title="Permalink to this definition"></a></dt>
+<dd><p>Arcsin operation for dual numbers and ints or floats</p>
+<section id="id9">
+<h3>Parameters<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float used for the arcsin operation</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Returns<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the arcsin operation performed. Integer and
+floats are supported, along with the arcsin of dual numbers.</p>
+</dd>
+</dl>
+</section>
+<section id="id11">
+<h3>Raises<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type
+ValueError : raise ValueError if argument is not between -1 and 1 inclusive</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.arctan">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">arctan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.arctan" title="Permalink to this definition"></a></dt>
+<dd><p>Arctan operation for dual numbers and ints or floats</p>
+<section id="id12">
+<h3>Parameters<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float used for the arctan operation</p>
+</dd>
+</dl>
+</section>
+<section id="id13">
+<h3>Returns<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the arctan operation performed. Integer and
+floats are supported, along with the arctan of dual numbers.</p>
+</dd>
+</dl>
+</section>
+<section id="id14">
+<h3>Raises<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.cos">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.cos" title="Permalink to this definition"></a></dt>
+<dd><p>Cosine operation for dual numbers and ints or floats</p>
+<section id="id15">
+<h3>Parameters<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float the cosine is evaluated on</p>
+</dd>
+</dl>
+</section>
+<section id="id16">
+<h3>Returns<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the cosine operation performed. Integer and
+floats are supported, along with the cosine of dual numbers through application 
+of the chain rule.</p>
+</dd>
+</dl>
+</section>
+<section id="id17">
+<h3>Raises<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.cosh">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">cosh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.cosh" title="Permalink to this definition"></a></dt>
+<dd><p>Cosh operation for dual numbers and ints or floats</p>
+<section id="id18">
+<h3>Parameters<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float used for the cosh operation</p>
+</dd>
+</dl>
+</section>
+<section id="id19">
+<h3>Returns<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the cosh operation performed. Integer and
+floats are supported, along with the cosh of dual numbers.</p>
+</dd>
+</dl>
+</section>
+<section id="id20">
+<h3>Raises<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.exp">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.exp" title="Permalink to this definition"></a></dt>
+<dd><p>Exp operation for dual numbers and ints or floats (base e)</p>
+<section id="id21">
+<h3>Parameters<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float being exponentiated</p>
+</dd>
+</dl>
+</section>
+<section id="id22">
+<h3>Returns<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the exp operation performed. Integer and
+floats are supported, along with the exponent of dual numbers.</p>
+</dd>
+</dl>
+</section>
+<section id="id23">
+<h3>Raises<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.log">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.log" title="Permalink to this definition"></a></dt>
+<dd><p>Log operation for dual numbers and ints or floats (base e)</p>
+<section id="id24">
+<h3>Parameters<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float used for the natural logarithm</p>
+</dd>
+</dl>
+</section>
+<section id="id25">
+<h3>Returns<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the logarithm operation performed. Integer and
+floats are supported, along with the natural logarithm of dual numbers.</p>
+</dd>
+</dl>
+</section>
+<section id="id26">
+<h3>Raises<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type
+ValueError : raise ValueError if argument is nonpositive</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.log_base">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">log_base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.log_base" title="Permalink to this definition"></a></dt>
+<dd><p>Log base operation for dual numbers and ints or floats</p>
+<section id="id27">
+<h3>Parameters<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float argument for the logarithm</p>
+</dd>
+<dt>x<span class="classifier">int, float</span></dt><dd><p>The int, or float base of the logarithm</p>
+</dd>
+</dl>
+</section>
+<section id="id28">
+<h3>Returns<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the logarithm operation performed. Integer and
+floats are supported, along with the logarithm of dual numbers of any int/float base.</p>
+</dd>
+</dl>
+</section>
+<section id="id29">
+<h3>Raises<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type
+ValueError : raise ValueError if argument is nonpositive</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.logistic">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">logistic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.logistic" title="Permalink to this definition"></a></dt>
+<dd><p>Logistic operation for dual numbers and ints or floats</p>
+<section id="id30">
+<h3>Parameters<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float used for the tanh operation</p>
+</dd>
+</dl>
+</section>
+<section id="id31">
+<h3>Returns<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the tanh operation performed. Integer and
+floats are supported, along with the tanh of dual numbers.</p>
+</dd>
+</dl>
+</section>
+<section id="id32">
+<h3>Raises<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.sin">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">sin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.sin" title="Permalink to this definition"></a></dt>
+<dd><p>Sine operation for dual numbers and ints or floats</p>
+<section id="id33">
+<h3>Parameters<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float the sine is evaluated on</p>
+</dd>
+</dl>
+</section>
+<section id="id34">
+<h3>Returns<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the sine operation performed. Integer and
+floats are supported, along with the sine of dual numbers through application 
+of the chain rule.</p>
+</dd>
+</dl>
+</section>
+<section id="id35">
+<h3>Raises<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.sinh">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">sinh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.sinh" title="Permalink to this definition"></a></dt>
+<dd><p>Sinh operation for dual numbers and ints or floats</p>
+<section id="id36">
+<h3>Parameters<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float used for the sinh operation</p>
+</dd>
+</dl>
+</section>
+<section id="id37">
+<h3>Returns<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the sinh operation performed. Integer and
+floats are supported, along with the sinh of dual numbers.</p>
+</dd>
+</dl>
+</section>
+<section id="id38">
+<h3>Raises<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.sqrt">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">sqrt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.sqrt" title="Permalink to this definition"></a></dt>
+<dd><p>Square root operation for dual numbers and ints or floats</p>
+<section id="id39">
+<h3>Parameters<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float used for the sqrt operation</p>
+</dd>
+</dl>
+</section>
+<section id="id40">
+<h3>Returns<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the sqrt operation performed. Integer and
+floats are supported, along with the sqrt of dual numbers.</p>
+</dd>
+</dl>
+</section>
+<section id="id41">
+<h3>Raises<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type
+ValueError : raise ValueError if argument is negative</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.tan">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">tan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.tan" title="Permalink to this definition"></a></dt>
+<dd><p>Tangent operation for dual numbers and ints or floats</p>
+<section id="id42">
+<h3>Parameters<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float the tangent is evaluated on</p>
+</dd>
+</dl>
+</section>
+<section id="id43">
+<h3>Returns<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the tangent operation performed. Integer and
+floats are supported, along with the tangent of dual numbers through application 
+of the chain rule.</p>
+</dd>
+</dl>
+</section>
+<section id="id44">
+<h3>Raises<a class="headerlink" href="#id44" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.operators.tanh">
+<span class="sig-prename descclassname"><span class="pre">autodiff.operators.</span></span><span class="sig-name descname"><span class="pre">tanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.operators.tanh" title="Permalink to this definition"></a></dt>
+<dd><p>Tanh operation for dual numbers and ints or floats</p>
+<section id="id45">
+<h3>Parameters<a class="headerlink" href="#id45" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float used for the tanh operation</p>
+</dd>
+</dl>
+</section>
+<section id="id46">
+<h3>Returns<a class="headerlink" href="#id46" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the tanh operation performed. Integer and
+floats are supported, along with the tanh of dual numbers.</p>
+</dd>
+</dl>
+</section>
+<section id="id47">
+<h3>Raises<a class="headerlink" href="#id47" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type</p>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-autodiff.rNode">
+<span id="autodiff-rnode-module"></span><h2>autodiff.rNode module<a class="headerlink" href="#module-autodiff.rNode" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="autodiff.rNode.rNode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autodiff.rNode.</span></span><span class="sig-name descname"><span class="pre">rNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oper</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.rNode.rNode" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>rNode class with overloaded operators and graph compatibility for reverse mode AD.</p>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>increment<span class="classifier">int</span></dt><dd><p>Increment to keep track of how many instances of the rNode
+have been created before the jacobian is found</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="autodiff.rNode.rNode.backward">
+<span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.rNode.rNode.backward" title="Permalink to this definition"></a></dt>
+<dd><p>Reverse pass to accumulative gradients</p>
+<section id="id48">
+<h4>Parameters<a class="headerlink" href="#id48" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>num_inputs<span class="classifier">int</span></dt><dd><p>The number of inputs the function has</p>
+</dd>
+</dl>
+</section>
+<section id="id49">
+<h4>Returns<a class="headerlink" href="#id49" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>np.ndarray</dt><dd><p>Returns a new np.ndarray with each entry corresponding to the derivative
+of self node with respect one of the function inputs, such that, if this
+node is a function output, the array itself corresponds to one row of
+the jacobian matrix</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autodiff.rNode.rNode.graph_object">
+<span class="sig-name descname"><span class="pre">graph_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.rNode.rNode.graph_object" title="Permalink to this definition"></a></dt>
+<dd><p>Create list of nodes and edges used to construct computational graph</p>
+<section id="id50">
+<h4>Returns<a class="headerlink" href="#id50" title="Permalink to this heading"></a></h4>
+<dl class="simple">
+<dt>tuple</dt><dd><p>Returns a tuple of two sets. The first set is a set of all the nodes
+in the computational graph. The second set is a set of tuples where each tuple
+has rNode objects as entries, and represent rNodes that should have an edge
+between them in the computational graph.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autodiff.rNode.rNode.increment">
+<span class="sig-name descname"><span class="pre">increment</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#autodiff.rNode.rNode.increment" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+<section id="module-autodiff">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-autodiff" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="autodiff.DualNumber">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autodiff.</span></span><span class="sig-name descname"><span class="pre">DualNumber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">real</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dual</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.DualNumber" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>DualNumber class with overloaded operators for forward mode AD.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.cos">
+<span class="sig-prename descclassname"><span class="pre">autodiff.</span></span><span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.cos" title="Permalink to this definition"></a></dt>
+<dd><p>Cosine operation for dual numbers and ints or floats</p>
+<section id="id51">
+<h3>Parameters<a class="headerlink" href="#id51" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float the cosine is evaluated on</p>
+</dd>
+</dl>
+</section>
+<section id="id52">
+<h3>Returns<a class="headerlink" href="#id52" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the cosine operation performed. Integer and
+floats are supported, along with the cosine of dual numbers through application 
+of the chain rule.</p>
+</dd>
+</dl>
+</section>
+<section id="id53">
+<h3>Raises<a class="headerlink" href="#id53" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.exp">
+<span class="sig-prename descclassname"><span class="pre">autodiff.</span></span><span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.exp" title="Permalink to this definition"></a></dt>
+<dd><p>Exp operation for dual numbers and ints or floats (base e)</p>
+<section id="id54">
+<h3>Parameters<a class="headerlink" href="#id54" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float being exponentiated</p>
+</dd>
+</dl>
+</section>
+<section id="id55">
+<h3>Returns<a class="headerlink" href="#id55" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the exp operation performed. Integer and
+floats are supported, along with the exponent of dual numbers.</p>
+</dd>
+</dl>
+</section>
+<section id="id56">
+<h3>Raises<a class="headerlink" href="#id56" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.log">
+<span class="sig-prename descclassname"><span class="pre">autodiff.</span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.log" title="Permalink to this definition"></a></dt>
+<dd><p>Log operation for dual numbers and ints or floats (base e)</p>
+<section id="id57">
+<h3>Parameters<a class="headerlink" href="#id57" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float used for the natural logarithm</p>
+</dd>
+</dl>
+</section>
+<section id="id58">
+<h3>Returns<a class="headerlink" href="#id58" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the logarithm operation performed. Integer and
+floats are supported, along with the natural logarithm of dual numbers.</p>
+</dd>
+</dl>
+</section>
+<section id="id59">
+<h3>Raises<a class="headerlink" href="#id59" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type
+ValueError : raise ValueError if argument is nonpositive</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.sin">
+<span class="sig-prename descclassname"><span class="pre">autodiff.</span></span><span class="sig-name descname"><span class="pre">sin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.sin" title="Permalink to this definition"></a></dt>
+<dd><p>Sine operation for dual numbers and ints or floats</p>
+<section id="id60">
+<h3>Parameters<a class="headerlink" href="#id60" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float the sine is evaluated on</p>
+</dd>
+</dl>
+</section>
+<section id="id61">
+<h3>Returns<a class="headerlink" href="#id61" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the sine operation performed. Integer and
+floats are supported, along with the sine of dual numbers through application 
+of the chain rule.</p>
+</dd>
+</dl>
+</section>
+<section id="id62">
+<h3>Raises<a class="headerlink" href="#id62" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autodiff.tan">
+<span class="sig-prename descclassname"><span class="pre">autodiff.</span></span><span class="sig-name descname"><span class="pre">tan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autodiff.tan" title="Permalink to this definition"></a></dt>
+<dd><p>Tangent operation for dual numbers and ints or floats</p>
+<section id="id63">
+<h3>Parameters<a class="headerlink" href="#id63" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">DualNumber, int, float</span></dt><dd><p>The DualNumber, int, or float the tangent is evaluated on</p>
+</dd>
+</dl>
+</section>
+<section id="id64">
+<h3>Returns<a class="headerlink" href="#id64" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>DualNumber</dt><dd><p>Returns a new DualNumber object with the tangent operation performed. Integer and
+floats are supported, along with the tangent of dual numbers through application 
+of the chain rule.</p>
+</dd>
+</dl>
+</section>
+<section id="id65">
+<h3>Raises<a class="headerlink" href="#id65" title="Permalink to this heading"></a></h3>
+<p>TypeError : raise TypeError if argument is not of int, float, or DualNumber type</p>
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="src" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Cyrus Asgari, Caleb Saul, Sal Blanco, James Bardin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

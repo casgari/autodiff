@@ -1,0 +1,26 @@
+name: Docs
+on: [push, pull_request]
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+            python-version: '3.10'
+      - name: install dependencies
+        run: |
+          python -m pip install sphinx sphinx_rtd_theme
+          
+      - name: Sphinx build
+        run: |
+          sphinx-build docs/documentation/sphinx_docs _build
+          
+      - name: Remove local Git config for fresh start of following action
+        run: rm -f .git/config
+        
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs/documentation/sphinx_docs/_build/html
+          target-folder: docs
