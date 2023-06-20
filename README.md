@@ -4,10 +4,6 @@
 [![.github/workflows/test.yml](https://github.com/casgari/autodiff/blob/main/.github/workflows/test.yml/badge.svg)](https://github.com/casgari/autodiff/blob/main/.github/workflows/test.yml)
 [![.github/workflows/coverage.yml](https://github.com/casgari/autodiff/blob/main/.github/workflows/coverage.yml/badge.svg)](https://github.com/casgari/autodiff/blob/main/.github/workflows/coverage.yml)
 
-### Contributors
--------
-Cyrus Asgari, Caleb Saul, Sal Blanco, James Bardin
-
 ### Documentation
 -------
 [https://github.com/casgari/autodiff/blob/main/docs/documentation.ipynb](https://github.com/casgari/autodiff/blob/main/docs/documentation.ipynb)
